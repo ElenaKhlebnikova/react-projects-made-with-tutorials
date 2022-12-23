@@ -11,35 +11,6 @@ import "./index.css";
 import Alert from "./components/layout/Alert";
 import User from "./pages/User";
 function App() {
-  const [initialMin, setInitialMin] = useState();
-  const [initialHours, setInitialHours] = useState();
-
-  const handleData = () => {
-    const initialDate = new Date();
-    const setInitialHoursSet = initialDate.getHours();
-    const setInitialMinSet = initialDate.getMinutes();
-    setInitialMin(setInitialMinSet);
-    setInitialHours(setInitialHoursSet);
-    localStorage.setItem("initialMin", JSON.stringify(initialMin));
-    localStorage.setItem("initialHours", JSON.stringify(initialHours));
-  };
-
-  const getInitialMin = localStorage.getItem("initialMin");
-  const getInitialHours = localStorage.getItem("initialHours");
-  console.log(initialHours, initialMin);
-  console.log(getInitialHours, getInitialMin);
-  const newDate = new Date();
-  const newHours = newDate.getHours();
-  const newMin = newDate.getMinutes();
-  console.log(newHours, newMin);
-
-  const countdown = () => {
-    const newTimeInMin = newHours * 60 + newMin;
-    const initialTimeInMin = initialHours * 60 + initialMin;
-    const timeLeft = newTimeInMin - initialTimeInMin;
-    return timeLeft;
-  };
-
   return (
     <GitHubProvider>
       <AlertProvider>
@@ -47,9 +18,6 @@ function App() {
           <div className="flex flex-col justify-between h-screen">
             <Navbar />
             <main className="container mx-auto px-3 pb-12">
-              <button onClick={handleData}>
-                CLICK ME!!!!!!!!!! {countdown()}
-              </button>
               <Alert />
               <Routes>
                 <Route path="/" element={<Home />} />
